@@ -69,15 +69,13 @@ if {$help_id eq 5} {
 	::ygi::log "redirecting..."
     if {$ygi::env(in_line) eq "epvpn"} {
         # Test environment
-#        set callto sip/208d9
-#        set line epvpn
-	set callto sip/01776784181
-	set line easybell
+        set callto sip/2089
+        set line epvpn
     } else {
         set callto sip/08004708090
         set line easybell
     }
-    set success [::ygi::msg chan.masquerade id $ygi::env(id) message call.execute callto $callto line $line callername $caller_id caller 004971729340048 screened yes domain easybell.de]
+    set success [::ygi::msg chan.masquerade id $ygi::env(id) message call.execute callto $callto line $line callername $caller_id osip_From "<sip:004971729340048@easybell.de>"]
     if {!$success} {
         ::ygi::log "fail"
         ::ygi::play_force gdv/ansage_sibernetz_fail.slin
