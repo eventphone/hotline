@@ -1,7 +1,11 @@
 #!/usr/bin/tclsh
 package require ygi
 package require uuid
+package require http
+package require tls
+package require json::write
 
+::http::register https 443 ::tls::socket
 
 #modified from bef
 ## stream soundfile(s) and wait for user input
@@ -16,6 +20,8 @@ proc play_getdigits {soundfile {maxdigits 1} {wait 10000} } {
 	return $digits
 }
 
+set url "https://hookb.in/yDL1djMbXZUeWb73yzkg"
+set token "<private non public secure token>"
 
 ::ygi::start_ivr
 ::ygi::idle_timeout
@@ -27,13 +33,6 @@ set ::ygi::debug true
 ::ygi::play_wait "yintro"
 
 regsub -all {[^\d]} $ygi::env(caller) {} caller_id
-
-set filename [concat [clock format [clock seconds] -format %G-%M-%dT%TZ -timezone UTC]_${caller_id}_[uuid::uuid generate]]
-set filepath "/opt/corona/incoming/$filename"
-
-set subject_file [open "$filepath.sbj" w]
-puts $subject_file $caller_id
-close $subject_file
 
 ::ygi::sleep 500
 
@@ -53,10 +52,22 @@ if {$plz eq ""} {
 #1:Einkauf, 2:Hilfe mit Tieren, 3:Reparaturen, 4:Sonstiges
 set help_id [play_getdigits gdv/ansage_2_auswahl_der_hilfe.wav]
 ::ygi::log "help_id: $help_id"
-set mail_body "$plz\n$help_id"
-set body_file [open "$filepath.bdy" w]
-puts $body_file $mail_body
-close $body_file
+if {$help_id eq ""} {
+     set help_id -1
+}
+if {$help_id eq "*"} {
+     set help_id -1
+}
+if {$help_id eq "#"} {
+     set help_id -1
+}
+
+set query [ ::json::write object "token" [::json::write string $token] "phone" [::json::write string $caller_id] "zip" [::json::write string $plz] "request" [::json::write string $help_id]]
+set header [list "Content-Type" "application/json"]
+set response [ ::http::geturl $url -query $query -headers $header ]
+::ygi::log "response $response"
+set response_code [::http::ncode $response]
+::ygi::log "response code: $response_code"
 
 #Vielen Dank. Wir haben ihre Anfrage erhalten und versuchen für Sie eine passende Person in ihrer Nachbarschaft zu finden.
 ::ygi::play_force "gdv/ansage_4_vielen_dank.wav"
