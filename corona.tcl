@@ -28,7 +28,7 @@ set ::ygi::debug true
 
 regsub -all {[^\d]} $ygi::env(caller) {} caller_id
 
-set filename [concat [clock format [clock seconds] -format %G-%m-%dT%TZ -timezone UTC]_${caller_id}_[uuid::uuid generate]]
+set filename [concat [clock format [clock seconds] -format %G-%M-%dT%TZ -timezone UTC]_${caller_id}_[uuid::uuid generate]]
 set filepath "/opt/corona/incoming/$filename"
 
 set subject_file [open "$filepath.sbj" w]
@@ -58,17 +58,5 @@ set body_file [open "$filepath.bdy" w]
 puts $body_file $mail_body
 close $body_file
 
-#Bitte sagen SIe uns nach dem Signalton, womit genau wir Ihnen helfen können.
-::ygi::set_dtmf_notify 0
-::ygi::play_force "gdv/ansage_3_bitte_nachricht_mit_piep.wav"
-::ygi::log "piep"
-
-#10 min limit (16000 * 60 * 10)
-::ygi::msg "chan.attach" source "wave/play/-" consumer "wave/record/$filepath.slin" notify $ygi::env(id) maxlen 9600000
-::ygi::log "recording"
-set notify [ ::ygi::waitfornotify ]
-::ygi::log "recorded"
 #Vielen Dank. Wir haben ihre Anfrage erhalten und versuchen für Sie eine passende Person in ihrer Nachbarschaft zu finden.
 ::ygi::play_force "gdv/ansage_4_vielen_dank.wav"
-
-#send_mail
