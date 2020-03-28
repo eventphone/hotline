@@ -23,6 +23,7 @@ We've currently 4 example hotlines:
   - ask for zipcode (via DTMF)
   - ask for topic (via DTMF)
   - send HTTP API Request containing caller number, zip code and topic to REST Endpoint
+  - if anything goes wrong save the request to the filesystem for manual inspection
 - [corona.py](hotline/corona.py) - python version of the gemeinschaft.online hotline
 - [api.tcl](hotline/api.tcl) - minimal HTTP API Example, which sends the caller to an HTTP endpoint and plays success or failed messages
 
@@ -59,3 +60,7 @@ docker build -t your_fancy_hotline .
 ``` sh
 docker run -it your_fancy_hotline
 ```
+
+## Help
+
+If you need any additional help, you may contact us via our [support](https://guru3.eventphone.de/support/).
