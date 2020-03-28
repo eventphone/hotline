@@ -1,6 +1,6 @@
 # minimal hotline setup
 
-This is an example of a minimal yate setup, which registers via an upstream SIP trunk and answers all calls with script. A similar setup is used for the hotline of https://gemeinschaft.online.
+This is an example of a minimal [yate](https://docs.yate.ro/wiki/Main_Page) setup, which registers via an upstream SIP trunk and answers all calls with script. A similar setup is used for the hotline of https://gemeinschaft.online.
 
 ## How to
 
