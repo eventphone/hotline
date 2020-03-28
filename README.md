@@ -27,6 +27,8 @@ We've currently 3 example hotlines:
 
 More examples can be found in the [yate-tcl](https://github.com/bef/yate-tcl) repository.
 
+If you want to use custom audio files, place them in the [sounds](sounds) directory
+
 ### build your custom docker container
 
 ``` sh
