@@ -12,6 +12,7 @@ set ::ygi::debug true
 ::ygi::play_wait yintro.slin
 ::ygi::sleep 500
 
+# request can be examined at https://hookbin.com/mZJqNOXaoXsBVLpJXYE0
 set url "https://hookb.in/mZJqNOXaoXsBVLpJXYE0"
 set caller_id $ygi::env(caller)
 
