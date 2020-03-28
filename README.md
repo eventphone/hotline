@@ -22,7 +22,7 @@ We've currently 4 example hotlines:
 - [corona.tcl](hotline/corona.tcl) - the latest version of the gemeinschaft.online hotline
   - ask for zipcode (via DTMF)
   - ask for topic (via DTMF)
-  - send HTTP API Request containing caller number, zip code and topic to REST Endpoint
+  - send HTTP API Request with caller number, zip code and topic to REST Endpoint
   - if anything goes wrong save the request to the filesystem for manual inspection
 - [corona.py](hotline/corona.py) - python version of the gemeinschaft.online hotline
 - [api.tcl](hotline/api.tcl) - minimal HTTP API Example, which sends the caller number to an HTTP endpoint and plays success or failed messages
@@ -47,7 +47,7 @@ apt install libsox-fmt-mp3
 
 ### configure your hotline
 
-Update [regexroute.conf](config/regexroute.conf) to point to your custom hotline script. You can route also to different scripts depending on the caller or dialed number. Details can be found in the [Yate WIKI](https://docs.yate.ro/wiki/Regular_expressions#The_regexroute_configuration_file).
+Update [regexroute.conf](config/regexroute.conf) to point to your custom hotline script. You can also route to different scripts depending on the caller or dialed number. Details can be found in the [Yate WIKI](https://docs.yate.ro/wiki/Regular_expressions#The_regexroute_configuration_file).
 
 ### build your custom docker container
 
