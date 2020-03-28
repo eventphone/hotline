@@ -25,7 +25,7 @@ We've currently 4 example hotlines:
   - send HTTP API Request containing caller number, zip code and topic to REST Endpoint
   - if anything goes wrong save the request to the filesystem for manual inspection
 - [corona.py](hotline/corona.py) - python version of the gemeinschaft.online hotline
-- [api.tcl](hotline/api.tcl) - minimal HTTP API Example, which sends the caller to an HTTP endpoint and plays success or failed messages
+- [api.tcl](hotline/api.tcl) - minimal HTTP API Example, which sends the caller number to an HTTP endpoint and plays success or failed messages
 
 More examples can be found in the [yate-tcl](https://github.com/bef/yate-tcl) repository.
 
@@ -36,7 +36,7 @@ If you want to use custom audio files, place them in the [sounds](sounds) direct
 You can use the following sox command to convert your mp3 or wav files to slin:
 
 ```sh
-sox input.mp3 -t raw -r 8000 -c 1 input.slin
+sox input.mp3 -t raw -r 8000 -c 1 output.slin
 ```
 
 You may need to install the sox format handler:
@@ -47,7 +47,7 @@ apt install libsox-fmt-mp3
 
 ### configure your hotline
 
-Update [regexroute.conf](config/regexroute.conf) to point to your custom hotline script. You can route to different script depending on the caller or dialed number. Details can be found in the [Yate WIKI](https://docs.yate.ro/wiki/Regular_expressions#The_regexroute_configuration_file).
+Update [regexroute.conf](config/regexroute.conf) to point to your custom hotline script. You can route also to different scripts depending on the caller or dialed number. Details can be found in the [Yate WIKI](https://docs.yate.ro/wiki/Regular_expressions#The_regexroute_configuration_file).
 
 ### build your custom docker container
 
