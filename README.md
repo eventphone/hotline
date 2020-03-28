@@ -12,7 +12,7 @@ git clone https://github.com/eventphone/hotline
 
 ### modify SIP settings
 
-Update [accfile.conf](config/accfile.conf) with your SIP Account credentials. If you don't have a SIP Account, you may use an [EPVPN Account](https://eventphone.de/doku/epvpn) for testing purposes.
+Update [accfile.conf](config/accfile.conf) with your SIP Account credentials. If you don't have a SIP Account, you may use an [EPVPN Account](https://eventphone.de/doku/epvpn) for __testing__ purposes.
 
 ### script your hotline
 
@@ -24,7 +24,7 @@ We've currently 4 example hotlines:
   - ask for topic (via DTMF)
   - send HTTP API Request containing caller number, zip code and topic to REST Endpoint
 - [corona.py](hotline/corona.py) - python version of the gemeinschaft.online hotline
-- [api.tcl](hotline/api.tcl) - minimal HTTP API Example, which sends the caller to en HTTP endpoint and plays success or failed messages
+- [api.tcl](hotline/api.tcl) - minimal HTTP API Example, which sends the caller to an HTTP endpoint and plays success or failed messages
 
 More examples can be found in the [yate-tcl](https://github.com/bef/yate-tcl) repository.
 
