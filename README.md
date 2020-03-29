@@ -8,6 +8,8 @@ This is an example of a minimal [yate](https://docs.yate.ro/wiki/Main_Page) setu
 
 ``` sh
 git clone https://github.com/eventphone/hotline
+cd hotline
+git submodule update --init --recursive
 ```
 
 ### modify SIP settings
